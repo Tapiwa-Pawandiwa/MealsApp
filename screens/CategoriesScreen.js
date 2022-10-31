@@ -5,10 +5,11 @@ import MealsOverviewScreen from "./MealsOverviewScreen";
 
 //you get a special navigation prop for components that are bound to a screen or rather screens that are used as screens not to any child components
 function CategoriesScreen({ navigation }) {
-
   function renderCategoryItem(itemData) {
     function pressHandler() {
-      navigation.navigate('MealsOverview');
+      navigation.navigate("MealsOverview", {
+        categoryId: itemData.item.id,
+      });
       //use name of target page not component name AS A STRING
       //navigate wants the name of the page we want to go to
     }
