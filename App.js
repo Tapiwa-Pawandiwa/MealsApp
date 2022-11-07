@@ -6,6 +6,7 @@ import {
   View,
   Button,
   ImageBackground,
+
 } from "react-native";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import { NavigationContainer } from "@react-navigation/native";
@@ -15,6 +16,10 @@ import MealsOverviewScreen from "./screens/MealsOverviewScreen";
 import MealDetailScreen from "./screens/MealDetailScreen";
 import FavoritesScreen from "./screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
+//import { FavoritesContext } from "./store/context/favorites-context";
+//import FavoritesContextProvider from './store/context/favorites-context';
+import {Provider} from 'react-redux';
+import {store} from './store/redux/store';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +46,7 @@ export default function App() {
           options={{
             title: "All Categories",
             drawerIcon: ({ color, size }) => (
-              <Ionicons name ="list" color={color} size={size} />
+              <Ionicons name="list" color={color} size={size} />
             ),
           }}
         />
@@ -62,6 +67,8 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
+     {/*<FavoritesContextProvider>*/}
+     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{
@@ -98,6 +105,8 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </Provider>
+     {/* </FavoritesContextProvider>*/}
     </>
   );
 }
